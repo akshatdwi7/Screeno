@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { View, StyleSheet } from 'react-native';
-import { Chrome as Home, Search, ChartLine as LineChart, ChartPie as PieChart, User, Zap } from 'lucide-react-native';
+import { Chrome as Home, Search, ChartLine as LineChart, ChartPie as PieChart, User, Zap, HomeIcon, Lightbulb, AirVent, LightbulbIcon,Plus, TouchpadOffIcon, TornadoIcon, ZapOff, LogOutIcon, Bluetooth,Eye } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -18,7 +18,7 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <Home size={size} color={color} />
+            <HomeIcon size={size} color={color} />
           ),
         }}
       />
@@ -34,9 +34,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="ai"
         options={{
-          title: 'AI Analysis',
+          title: 'Pro Tools',
           tabBarIcon: ({ color, size }) => (
-            <Zap size={size} color={color} />
+            <LightbulbIcon size={size} color={color} />
           ),
         }}
       />
@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    height: 60,
-    paddingBottom: 5,
+    height: 74,
+    paddingBottom: 20,
   },
   tabBarLabel: {
     fontFamily: 'Poppins-Regular',

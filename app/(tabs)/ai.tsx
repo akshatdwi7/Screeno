@@ -21,15 +21,16 @@ export default function AIAnalysisScreen() {
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
-          <Text style={styles.title}>AI Analysis</Text>
-        </View>
+        
+          <Text style={styles.title}>Screener With built in Ai</Text>
+        </View> 
 
         <View style={styles.searchContainer}>
           <View style={styles.searchInputContainer}>
             <Search size={20} color="#999" style={styles.searchIcon} />
             <TextInput
               style={styles.searchInput}
-              placeholder="Enter stock symbol (e.g., AAPL)"
+              placeholder="Enter stock symbol (e.g., Infosys,Tcs)"
               placeholderTextColor="#999"
               value={searchQuery}
               onChangeText={handleSearch}
@@ -47,7 +48,7 @@ export default function AIAnalysisScreen() {
               <View style={styles.premiumTextContainer}>
                 <Text style={styles.premiumTitle}>Upgrade to Premium</Text>
                 <Text style={styles.premiumDescription}>
-                  Get unlimited AI-powered stock analysis, real-time alerts, and advanced metrics
+                  Get unlimited AI-powered stock Screener ,analysis, real-time alerts, and advanced metrics
                 </Text>
               </View>
               <Lock size={24} color="#FFF" />

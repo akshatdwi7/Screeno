@@ -3,10 +3,12 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TrendingUp, TrendingDown, Bell, ArrowRight, Zap, ChartBar as BarChart3 } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
+  const router =useRouter();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -34,7 +36,7 @@ export default function HomeScreen() {
           </View>
           <Text style={styles.portfolioValue}>₹9,24,685.75</Text>
           <View style={styles.portfolioChange}>
-            <TrendingUp size={16} color="#FFFFFF" />
+            <TrendingUp size={20} color="#FFFFFF" />
             <Text style={styles.changeText}>+₹12,234.56 (5.2%)</Text>
           </View>
           <TouchableOpacity style={styles.viewDetailsButton}>
@@ -53,7 +55,18 @@ export default function HomeScreen() {
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.trendsScrollView}>
           {marketTrends.map((trend, index) => (
-            <TouchableOpacity key={index} style={styles.trendCard}>
+            <TouchableOpacity key={index} style={styles.trendCard}
+            onPress={() => router.push({
+              pathname: '/stock-detail',
+              params: {
+                symbol: trend.symbol,
+                name: trend.name,
+                logo: trend.logo,
+                price: trend.price,
+                change: trend.change
+              }
+            })}
+            >
               <View style={styles.trendHeader}>
                 <Image source={{ uri: trend.logo }} style={styles.trendLogo} />
                 <Text style={styles.trendSymbol}>{trend.symbol}</Text>
@@ -81,7 +94,7 @@ export default function HomeScreen() {
         <View style={styles.sectionHeader}>
           <View style={styles.sectionTitleContainer}>
             <Zap size={18} color="#6C5CE7" />
-            <Text style={styles.sectionTitle}>AI Insights</Text>
+            <Text style={styles.sectionTitle}>Ai Insights about your stocks 🔎</Text>
           </View>
           <TouchableOpacity>
             <Text style={styles.seeAllText}>See All</Text>
@@ -215,12 +228,12 @@ const aiInsights = [
     description: 'AI predicts 12% growth in tech sector over next quarter',
   },
   {
-    title: 'Potential Breakout',
-    description: 'NVDA showing strong momentum patterns',
+    title: 'Fundamental Analaysis',
+    description: 'Mrs Bector Foods Shows Good ROE AND ROCE% ',
   },
   {
     title: 'Market Volatility Alert',
-    description: 'Increased volatility expected due to upcoming Fed meeting',
+    description: 'Increased volatility expected due to upcoming SEBI meeting',
   },
 ];
 
@@ -271,7 +284,7 @@ const newsItems = [
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     backgroundColor: '#F8F9FA',
   },
   header: {
