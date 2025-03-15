@@ -15,7 +15,7 @@ export default function HomeScreen() {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.greeting}>Good morning sir!,</Text>
+            <Text style={styles.greeting}>Good morning ,</Text>
             <Text style={styles.username}>Akshat</Text>
           </View>
           <TouchableOpacity style={styles.notificationButton}>
