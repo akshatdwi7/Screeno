@@ -1,21 +1,38 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { TrendingUp, TrendingDown, Bell, ArrowRight, Zap, ChartBar as BarChart3 } from 'lucide-react-native';
+import {
+  TrendingUp,
+  TrendingDown,
+  Bell,
+  ArrowRight,
+  Zap,
+  ChartBar as BarChart3,
+} from 'lucide-react-native';
 import { useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  const router =useRouter();
+  const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
+          <StatusBar style="dark" />
           <View>
-            <Text style={styles.greeting}>Good morning ,</Text>
+            <Text style={styles.greeting}>Good morning :)</Text>
             <Text style={styles.username}>Akshat</Text>
           </View>
           <TouchableOpacity style={styles.notificationButton}>
@@ -29,7 +46,8 @@ export default function HomeScreen() {
           colors={['#6C5CE7', '#8E7CF3']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
-          style={styles.portfolioCard}>
+          style={styles.portfolioCard}
+        >
           <View style={styles.portfolioHeader}>
             <Text style={styles.portfolioTitle}>Your Portfolio</Text>
             <Text style={styles.portfolioDate}>March 5, 2025</Text>
@@ -53,26 +71,39 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.trendsScrollView}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.trendsScrollView}
+        >
           {marketTrends.map((trend, index) => (
-            <TouchableOpacity key={index} style={styles.trendCard}
-            onPress={() => router.push({
-              pathname: '/stock-detail',
-              params: {
-                symbol: trend.symbol,
-                name: trend.name,
-                logo: trend.logo,
-                price: trend.price,
-                change: trend.change
+            <TouchableOpacity
+              key={index}
+              style={styles.trendCard}
+              onPress={() =>
+                router.push({
+                  pathname: '/stock-detail',
+                  params: {
+                    symbol: trend.symbol,
+                    name: trend.name,
+                    logo: trend.logo,
+                    price: trend.price,
+                    change: trend.change,
+                  },
+                })
               }
-            })}
             >
               <View style={styles.trendHeader}>
                 <Image source={{ uri: trend.logo }} style={styles.trendLogo} />
                 <Text style={styles.trendSymbol}>{trend.symbol}</Text>
               </View>
               <Text style={styles.trendPrice}>${trend.price}</Text>
-              <View style={[styles.trendChange, { backgroundColor: trend.change > 0 ? '#E7F9F0' : '#FDEEEE' }]}>
+              <View
+                style={[
+                  styles.trendChange,
+                  { backgroundColor: trend.change > 0 ? '#E7F9F0' : '#FDEEEE' },
+                ]}
+              >
                 {trend.change > 0 ? (
                   <TrendingUp size={12} color="#00C087" />
                 ) : (
@@ -82,8 +113,10 @@ export default function HomeScreen() {
                   style={[
                     styles.trendChangeText,
                     { color: trend.change > 0 ? '#00C087' : '#FF4D4F' },
-                  ]}>
-                  {trend.change > 0 ? '+' : ''}{trend.change}%
+                  ]}
+                >
+                  {trend.change > 0 ? '+' : ''}
+                  {trend.change}%
                 </Text>
               </View>
             </TouchableOpacity>
@@ -94,7 +127,9 @@ export default function HomeScreen() {
         <View style={styles.sectionHeader}>
           <View style={styles.sectionTitleContainer}>
             <Zap size={18} color="#6C5CE7" />
-            <Text style={styles.sectionTitle}>Ai Insights about your stocks 🔎</Text>
+            <Text style={styles.sectionTitle}>
+              Ai Insights about your stocks 🔎
+            </Text>
           </View>
           <TouchableOpacity>
             <Text style={styles.seeAllText}>See All</Text>
@@ -109,7 +144,9 @@ export default function HomeScreen() {
               </View>
               <View style={styles.insightContent}>
                 <Text style={styles.insightTitle}>{insight.title}</Text>
-                <Text style={styles.insightDescription}>{insight.description}</Text>
+                <Text style={styles.insightDescription}>
+                  {insight.description}
+                </Text>
               </View>
               <ArrowRight size={16} color="#6C5CE7" />
             </TouchableOpacity>
@@ -146,8 +183,10 @@ export default function HomeScreen() {
                     style={[
                       styles.stockChangeText,
                       { color: stock.change > 0 ? '#00C087' : '#FF4D4F' },
-                    ]}>
-                    {stock.change > 0 ? '+' : ''}{stock.change}%
+                    ]}
+                  >
+                    {stock.change > 0 ? '+' : ''}
+                    {stock.change}%
                   </Text>
                 </View>
               </View>
@@ -265,26 +304,29 @@ const newsItems = [
   {
     source: 'Bloomberg',
     title: 'Fed Signals Potential Rate Cut in September Meeting',
-    image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=200&auto=format&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=200&auto=format&fit=crop',
     time: '2 hours ago',
   },
   {
     source: 'CNBC',
     title: 'NVIDIA Unveils Next-Gen AI Chips, Stock Surges 5%',
-    image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=200&auto=format&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=200&auto=format&fit=crop',
     time: '4 hours ago',
   },
   {
     source: 'Wall Street Journal',
     title: 'Tech Giants Face New Antitrust Regulations in EU',
-    image: 'https://images.unsplash.com/photo-1491336477066-31156b5e4f35?q=80&w=200&auto=format&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1491336477066-31156b5e4f35?q=80&w=200&auto=format&fit=crop',
     time: '6 hours ago',
   },
 ];
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#F8F9FA',
   },
   header: {
